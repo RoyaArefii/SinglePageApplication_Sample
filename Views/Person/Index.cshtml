@@ -1,0 +1,89 @@
+﻿@using SinglePageApplication.Controllers.Dtos.PersonDtos;
+@*Layout ="~\views\shared\_layout.cshtml";*@
+@model List<SelectPersonDto>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<div class = "panel panel-danger">
+    <div class="panel-heading">
+        <h3>
+            Person Register
+        </h3>
+    </div>
+ </div>
+ <div class="panel-body">
+     <div>
+        <div class="form-group col-md-3">
+            <label>FirstName</label>
+            <input type ="text" name ="FirtsName" id ="firstName" class="form-control">
+        </div>
+        <div class="form-group col-md-3">
+            <label>FirstName</label>
+            <input type="text" name="LastName" id="lastName" class="form-control">
+        </div>
+     </div>
+    <div class="form-group col-md-3">
+        <button type="button" class="btn btn-success">
+            Save
+        </button>
+    </div>
+ </div>
+@*<div class="row ">
+    <table id="PersonTable" class="table table-bordered table-striped">
+        <thead class="border border-bottom border-top">
+            <tr>
+  
+                <th>FName</th>
+                <th>LName</th>
+                <th>FullName</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<tbody id="tbody">
+</tbody>*@
+<script type = "text/javascript">
+    alert("Start11111 loadDataToTable.....");
+        var js = jQuery.noConflict(true);
+        $(document).ready(function () {
+                alert("Data is loading.....");
+            loadData();
+        });
+        function loadData() 
+        {
+            alert("Start loadDataToTable.....");
+            $.ajax(
+                {
+                    url: "Person/Index", 
+                    type: "GET",
+                    dataType: "json", 
+                    success: function (data) 
+                    {
+                        var item = '';
+                        $.each(data, function (key, item) {
+                            console.log(item.FName);
+                            $("tbody tr").remove;
+                            var row = "<tr>"
+                            //$.each(item, function (key, itemData) {
+                                + "<td>" + item.FName + "</td>"
+                                + "<td>" + item.LName + "</td>"
+                                    + "<td>" + item.FullName + "</td>"
+                                //html += '<td><a href="#" onclick="return getbyID(' + itemData.Id + ')">Edit</a> | <a href="#" onclick="Delele(' + item.Id + ')">Delete</a></td>';
+                                + "</tr>";
+                            $("#PersonTable").append(row);
+                            });
+                    },
+                    error: function () {
+                        alert("Error In LoadPeople");
+                }
+            });
+        }
+    </script>

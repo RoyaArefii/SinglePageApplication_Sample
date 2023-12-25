@@ -1,0 +1,54 @@
+﻿@using SinglePageApplication.Controllers.Dtos.ProductDtos;
+
+@model List<SelectProductDto>;
+<h1>Product List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <h5>Title</h5>
+            </th>
+            <th>
+
+                <h5>UnitPrice</h5>
+            </th>
+            <th>
+
+                <h5>Quantity</h5>
+            </th>
+            <th>
+
+                <h5>Price</h5>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.UnitPrice
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
